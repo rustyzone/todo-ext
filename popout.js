@@ -13,6 +13,10 @@ document.querySelector('.new-item button').addEventListener('click',function(){
   if(itemName != ''){
 
     var itemsStorage = localStorage.getItem('todo-items');
+
+    if(itemsStorage == null){
+      itemsStorage = '[]';
+    }
     var itemsArr = JSON.parse(itemsStorage);
     itemsArr.push({"item":itemName, "status":0});
     saveItems(itemsArr);
@@ -30,6 +34,9 @@ function fetchItems(){
   var newItemHTML = '';
   try{
     var itemsStorage = localStorage.getItem('todo-items');
+    if(itemsStorage == null){
+      itemsStorage = '[]';
+    }
     var itemsArr = JSON.parse(itemsStorage);
 
     for (var i = 0; i < itemsArr.length; i++) {
@@ -68,6 +75,10 @@ function fetchItems(){
 function itemComplete(index){
 
     var itemsStorage = localStorage.getItem('todo-items');
+
+    if(itemsStorage == null){
+      itemsStorage = '[]';
+    }
     var itemsArr = JSON.parse(itemsStorage);
 
     itemsArr[index].status = 1;
@@ -80,6 +91,9 @@ function itemComplete(index){
 function itemDelete(index){
 
     var itemsStorage = localStorage.getItem('todo-items');
+    if(itemsStorage == null){
+      itemsStorage = '[]';
+    }
     var itemsArr = JSON.parse(itemsStorage);
 
     itemsArr.splice(index, 1);
